@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <span class="h3">Listado de Empleados</span>
+            
+            <button class="btn btn-dark btn-lg float-right" routerLink="/form-departamento">Agregar</button>
+            <table class="table mt-4 table-striped">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                    <th>Creado el</th>
+                    <th>Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let dep of departamento" >
+                    <td>{{dep.id}}</td>
+                    <td>{{dep.nombre}}</td>
+                    <td>{{dep.estado}}</td>
+                    <td>{{dep.createdAt}}</td>
+                    <td>
+                        <i [routerLink]="['/edit-departamento/',dep.id]" class="fas fa-edit fa-lg text-info mr-5" ></i>
+                        <i (click)="eliminarEmpleado(dep.id)" class="fas fa-trash fa-lg text-danger ml-2"></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+</div>

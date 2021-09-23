@@ -1,0 +1,47 @@
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3> {{titulo}}
+                        <div *ngIf="loading" class="spinner-border" role="status">
+                        <span  class="visually-hidden float-right">Loading...</span>
+                      </div> 
+                    </h3>
+                    <div *ngIf="validator" class="alert alert-danger" role="alert">
+                        Todos los campos deben estar llenos
+                      </div>
+                    <form class="mt-4" [formGroup]="formDep" (submit)="edit ? actualizarProducto() : agregarDeparamento()" autocomplete="off">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" required class="form-control form-control-lg" 
+                               placeholder="nombre" name="nombre"
+                               formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                                <small *ngIf="nombreNoValido" class="text-danger">
+                                    Campo Vacio
+                                </small>
+                                <small *ngIf="nombreNoValido" class="text-danger">Nombre ya existe</small>
+                            </div>
+
+                        </div>
+                        <div class="mt-3">
+                            <button type="text" class="btn btn-secondary btn-lg mr-3" routerLink="/list-empleados">Volver</button>
+                            <button type="submit" class="btn btn-dark btn-lg">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+<pre>
+    Esado del forulario: {{formDep.valid}}
+    <br>
+    Status {{formDep.status}}
+</pre>
+
+<pre>
+    {{formDep.value | json }}
+</pre>
